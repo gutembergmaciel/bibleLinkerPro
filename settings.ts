@@ -24,7 +24,7 @@ export class MainSettingTab extends PluginSettingTab {
 	getLangBase(): { [key: string]: string } {
 		const pluginLanguage = this.plugin.settings.pluginLanguage;
 		const langBase: { [key: string]: string } =
-			pluginLanguage === "en" || pluginLanguage === "nl"
+			pluginLanguage === "en" || pluginLanguage === "nl" || pluginLanguage === "br"
 				? translations[pluginLanguage]
 				: {};
 
@@ -62,6 +62,7 @@ export class MainSettingTab extends PluginSettingTab {
 				String.addOption("/", this.getTranslation("SYSTEM"))
 					.addOption("en", "English")
 					.addOption("nl", "Nederlands")
+					.addOption("br", "Português Brasil")
 					.setValue(
 						this.plugin.settings.pluginLanguage != moment.locale()
 							? this.plugin.settings.pluginLanguage
@@ -71,7 +72,8 @@ export class MainSettingTab extends PluginSettingTab {
 						if (value === "/") {
 							if (
 								moment.locale() == "en" ||
-								moment.locale() == "nl"
+								moment.locale() == "nl" ||
+								moment.locale() == "br"
 							) {
 								this.plugin.settings.pluginLanguage =
 									moment.locale();
